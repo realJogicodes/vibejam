@@ -55,6 +55,15 @@ for ($i = 0; $i < count($params); $i++) {
 $stmt->bindValue(count($params) + 1, $items_per_page, SQLITE3_INTEGER);
 $stmt->bindValue(count($params) + 2, $offset, SQLITE3_INTEGER);
 $result = $stmt->execute();
+
+// Get unique categories for filter buttons
+$categories = $db->query("SELECT DISTINCT category FROM submissions ORDER BY category");
+$category_list = [];
+while ($cat = $categories->fetchArray()) {
+    if (!empty($cat['category'])) {
+        $category_list[] = $cat['category'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -245,6 +254,94 @@ $result = $stmt->execute();
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+
+        .submit-button {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin: 1rem 0;
+        }
+
+        .submit-button:hover {
+            background: #059669;
+        }
+
+        .filter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+        }
+
+        .search-box button {
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.2s;
+        }
+
+        .category-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .category-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            .filter-form {
+                gap: 1rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -253,6 +350,7 @@ $result = $stmt->execute();
             <h1>2025 Vibe Coding Game Jam</h1>
             <p>The first game jam for AI vibecoded games</p>
             <p class="deadline">Submission Deadline: April 1, 2025</p>
+            <p><a href="http://jam.pieter.com" class="submit-button">Submit Your Game</a></p>
             
             <div class="jury-sponsors">
                 <div>
@@ -273,21 +371,23 @@ $result = $stmt->execute();
         </section>
 
         <section class="filters">
-            <form action="" method="GET">
-                <input type="text" name="search" placeholder="Search by title or creator" 
-                       value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-                <select name="category">
-                    <option value="">All Categories</option>
-                    <?php
-                    $categories = $db->query("SELECT DISTINCT category FROM submissions ORDER BY category");
-                    while ($category = $categories->fetchArray()) {
-                        $selected = ($_GET['category'] ?? '') === $category['category'] ? 'selected' : '';
-                        echo "<option value='" . htmlspecialchars($category['category']) . "' $selected>" . 
-                             htmlspecialchars($category['category']) . "</option>";
-                    }
-                    ?>
-                </select>
-                <button type="submit">Filter</button>
+            <form action="" method="GET" class="filter-form">
+                <div class="search-box">
+                    <input type="text" name="search" placeholder="Search by title or creator" 
+                           value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                    <button type="submit">Search</button>
+                </div>
+                <div class="category-filters">
+                    <a href="?" class="category-button <?php echo empty($_GET['category']) ? 'active' : ''; ?>">
+                        All Games
+                    </a>
+                    <?php foreach ($category_list as $category): ?>
+                        <a href="?category=<?php echo urlencode($category); ?>" 
+                           class="category-button <?php echo ($_GET['category'] ?? '') === $category ? 'active' : ''; ?>">
+                            <?php echo htmlspecialchars($category); ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </form>
         </section>
 
