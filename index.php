@@ -692,7 +692,7 @@ while ($cat = $categories->fetchArray()) {
       </ul>
 
       <a href="http://jam.pieter.com" target="_blank" class="submit-button" style="background: #e53e3e;"><span
-          class="emoji-space">🔥</span>Submit Your Game Now!</a>
+          class="emoji-space">➡️</span>Submit Your Game Now!</a>
 
       <div class="jury-sponsors">
         <div>
