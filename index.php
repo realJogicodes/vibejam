@@ -502,14 +502,14 @@ while ($cat = $categories->fetchArray()) {
 
         .sponsors-section {
             background: white;
-            padding: 2rem;
+            padding: 3rem 2rem;
             margin-top: 4rem;
             border-top: 1px solid #e2e8f0;
         }
 
         .sponsors-container {
             display: grid;
-            gap: 2rem;
+            gap: 3rem;
             grid-template-columns: 1fr; /* Single column for mobile */
             max-width: 1400px;
             margin: 0 auto;
@@ -521,29 +521,29 @@ while ($cat = $categories->fetchArray()) {
             }
         }
 
-        .sponsors-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr; /* Default single column for mobile */
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .sponsors-grid {
-                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
-            }
-        }
-
         .sponsor-card {
-            background: rgb(237, 240, 243);
+            background: white;
             border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .sponsor-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .sponsor-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sponsor-info {
+            padding: 1.5rem;
+            background: rgb(237, 240, 243);
         }
 
         .sponsor-link {
@@ -551,15 +551,16 @@ while ($cat = $categories->fetchArray()) {
             align-items: center;
             text-decoration: none;
             color: var(--text-color);
-            padding: 1rem;
         }
 
         .sponsor-image {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .sponsor-content {
@@ -567,14 +568,16 @@ while ($cat = $categories->fetchArray()) {
         }
 
         .sponsor-name {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            color: var(--primary-color);
         }
 
         .sponsor-bio {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--secondary-color);
+            line-height: 1.5;
         }
 
         .footer-section {
@@ -741,37 +744,45 @@ while ($cat = $categories->fetchArray()) {
 
         <section class="sponsors-section">
             <div class="container">
-                <h2 style="text-align: center; margin-bottom: 2rem;">Vibe Jam Sponsors</h2>
+                <h2 style="text-align: center; margin-bottom: 3rem;" class="recursive-500">Vibe Jam Sponsors</h2>
                 <div class="sponsors-container">
                     <?php
                     // Reset sponsors result pointer
                     $sponsors->reset();
                     while ($sponsor = $sponsors->fetchArray()):
                         $username = htmlspecialchars(ltrim($sponsor['username'], '@'));
+                        $banner_url = $sponsor['username'] === '@boltdotnew'
+                            ? 'https://pbs.twimg.com/profile_banners/2279695508/1727979389/1500x500'
+                            : 'https://pbs.twimg.com/profile_banners/1651729524579766272/1729919845/1500x500';
                     ?>
                         <div class="sponsor-card">
-                            <a href="https://x.com/<?php echo $username; ?>" target="_blank" class="sponsor-link">
-                                <img class="sponsor-image"
-                                     src="https://unavatar.io/twitter/<?php echo $username; ?>"
-                                     alt="Profile picture of <?php echo htmlspecialchars($sponsor['username']); ?>">
-                                <div class="sponsor-content">
-                                    <h3 class="sponsor-name"><?php echo htmlspecialchars($sponsor['username']); ?></h3>
-                                    <p class="sponsor-bio">
-                                        <?php
-                                        switch($sponsor['username']) {
-                                            case '@boltdotnew':
-                                                echo 'Platform for prompting, running, editing, and deploying full-stack web and mobile apps @boltnew since 2014.';
-                                                break;
-                                            case '@coderabbitai':
-                                                echo 'San Francisco-based AI code review platform @coderabbitai, supercharging dev teams since 2023.';
-                                                break;
-                                            default:
-                                                echo 'Vibe Jam sponsor';
-                                        }
-                                        ?>
-                                    </p>
-                                </div>
-                            </a>
+                            <img class="sponsor-banner"
+                                 src="<?php echo $banner_url; ?>"
+                                 alt="Banner for <?php echo htmlspecialchars($sponsor['username']); ?>">
+                            <div class="sponsor-info">
+                                <a href="https://x.com/<?php echo $username; ?>" target="_blank" class="sponsor-link">
+                                    <img class="sponsor-image"
+                                         src="https://unavatar.io/twitter/<?php echo $username; ?>"
+                                         alt="Profile picture of <?php echo htmlspecialchars($sponsor['username']); ?>">
+                                    <div class="sponsor-content">
+                                        <h3 class="sponsor-name"><?php echo htmlspecialchars($sponsor['username']); ?></h3>
+                                        <p class="sponsor-bio">
+                                            <?php
+                                            switch($sponsor['username']) {
+                                                case '@boltdotnew':
+                                                    echo 'Platform for prompting, running, editing, and deploying full-stack web and mobile apps @boltnew since 2014.';
+                                                    break;
+                                                case '@coderabbitai':
+                                                    echo 'San Francisco-based AI code review platform @coderabbitai, supercharging dev teams since 2023.';
+                                                    break;
+                                                default:
+                                                    echo 'Vibe Jam sponsor';
+                                            }
+                                            ?>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     <?php endwhile; ?>
                 </div>
