@@ -405,19 +405,42 @@ while ($cat = $categories->fetchArray()) {
                 <div>
                     <h2>Jury Members</h2>
                     <div class="jury-members">
-                    <?php while ($jury = $jury_members->fetchArray()): ?>
-                        <a href="https://x.com/<?php echo htmlspecialchars($jury['username']); ?>" target="_blank" class="jury-member">
-                            <img src="https://unavatar.io/twitter/<?php echo htmlspecialchars($jury['username']); ?>" alt="Profile picture of <?php echo htmlspecialchars($jury['username']); ?>">
+                    <?php 
+                    $ordered_jury = array();
+                    while ($jury = $jury_members->fetchArray()) {
+                        if ($jury['username'] === '@levelsio') {
+                            $levelsio = $jury;
+                        } else {
+                            $ordered_jury[] = $jury;
+                        }
+                    }
+                    // Sort other jury members alphabetically
+                    usort($ordered_jury, function($a, $b) {
+                        return strcmp($a['username'], $b['username']);
+                    });
+                    // Add levelsio at the end
+                    if (isset($levelsio)) {
+                        $ordered_jury[] = $levelsio;
+                    }
+                    
+                    foreach ($ordered_jury as $jury): ?>
+                        <a href="https://x.com/<?php echo htmlspecialchars(ltrim($jury['username'], '@')); ?>" target="_blank" class="jury-member">
+                            <img src="https://unavatar.io/twitter/<?php echo htmlspecialchars(ltrim($jury['username'], '@')); ?>" alt="Profile picture of <?php echo htmlspecialchars($jury['username']); ?>">
                             <span><?php echo htmlspecialchars($jury['username']); ?></span>
                         </a>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                     </div>
                 </div>
                 <div>
                     <h2>Sponsors</h2>
+                    <div class="jury-members">
                     <?php while ($sponsor = $sponsors->fetchArray()): ?>
-                        <span class="tag"><?php echo htmlspecialchars($sponsor['username']); ?></span>
+                        <a href="https://x.com/<?php echo htmlspecialchars(ltrim($sponsor['username'], '@')); ?>" target="_blank" class="jury-member">
+                            <img src="https://unavatar.io/twitter/<?php echo htmlspecialchars(ltrim($sponsor['username'], '@')); ?>" alt="Profile picture of <?php echo htmlspecialchars($sponsor['username']); ?>">
+                            <span><?php echo htmlspecialchars($sponsor['username']); ?></span>
+                        </a>
                     <?php endwhile; ?>
+                    </div>
                 </div>
             </div>
 
