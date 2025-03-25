@@ -176,6 +176,8 @@ while ($cat = $categories->fetchArray()) {
             display: grid;
             gap: 2rem;
             grid-template-columns: 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .submission-card {
@@ -188,12 +190,13 @@ while ($cat = $categories->fetchArray()) {
         }
 
         .card-content {
-            padding: 1rem;
+            padding: 1.5rem;
+            flex: 1;
         }
 
         .submission-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
         }
 
@@ -236,7 +239,7 @@ while ($cat = $categories->fetchArray()) {
 
         @media (min-width: 640px) {
             .submissions-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(1, 1fr);
             }
 
             .submission-card {
@@ -244,14 +247,24 @@ while ($cat = $categories->fetchArray()) {
             }
 
             .submission-image {
-                width: 200px;
-                height: 100%;
+                width: 400px;
+                height: 250px;
+                object-fit: cover;
             }
         }
 
         @media (min-width: 1024px) {
             .submissions-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .submission-card {
+                flex-direction: column;
+            }
+
+            .submission-image {
+                width: 100%;
+                height: 300px;
             }
         }
 
