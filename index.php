@@ -77,6 +77,18 @@ while ($cat = $categories->fetchArray()) {
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap" rel="stylesheet">
   <title>2025 Vibe Coding Game Jam - Submissions</title>
   <style>
+    .recursive-700 {
+      font-family: "Recursive", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
+      font-variation-settings:
+        "slnt" 0,
+        "CASL" 0,
+        "CRSV" 0.5,
+        "MONO" 0;
+    }
+
     .recursive-500 {
       font-family: "Recursive", sans-serif;
       font-optical-sizing: auto;
@@ -651,7 +663,7 @@ while ($cat = $categories->fetchArray()) {
 
   <section class="competition-info">
     <div class="container">
-      <p style="font-size: 1.2rem; color: #e53e3e;" class="recursive-500"><span class="emoji-space">🤖</span>AI-Powered
+      <p style="font-size: 1.2rem; color: #e53e3e;" class="recursive-700"><span class="emoji-space">🤖</span>AI-Powered
         Game Dev Jam</p>
       <h1 class="recursive-500">2025 Vibe Coding Game Jam</h1>
       <p class="recursive-500">Push AI to its limits and build something wild</p>
@@ -792,7 +804,7 @@ while ($cat = $categories->fetchArray()) {
     </nav>
   </div>
   <section class="sponsors-section">
-    <h2 style="text-align: center; margin-bottom: 2rem;" class="recursive-500">Vibe Jam Sponsors</h2>
+    <h2 style="text-align: center; margin-bottom: 2rem;" class="recursive-700">Vibe Jam Sponsors</h2>
     <div class="container">
       <div class="sponsors-container">
         <?php
@@ -839,7 +851,7 @@ while ($cat = $categories->fetchArray()) {
 
   <section class="jury-section">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 2rem;">The Jury</h2>
+      <h2 class="recursive-700" style="text-align: center; margin-bottom: 2rem;">The Jury</h2>
       <div class="jury-grid">
         <?php
         // Reset jury_members result pointer
