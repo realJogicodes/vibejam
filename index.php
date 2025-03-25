@@ -345,7 +345,7 @@ while ($cat = $categories->fetchArray()) {
         .jury-member {
             display: flex;
             align-items: center;
-            background: #cbd5e1;
+            background:rgb(237, 240, 243);
             border-radius: 50px;
             padding: 0.5rem;
             transition: transform 0.2s ease;
