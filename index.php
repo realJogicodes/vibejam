@@ -397,6 +397,18 @@ while ($cat = $categories->fetchArray()) {
       margin-right: 0.75rem;
     }
 
+    @media (max-width: 640px) {
+      .jury-member {
+        padding: 0.25rem;
+      }
+
+      .jury-member img {
+        width: 32px;
+        height: 32px;
+        margin-right: 0.5rem;
+      }
+    }
+
     .jury-member span {
       padding-right: 1rem;
       font-weight: 500;
