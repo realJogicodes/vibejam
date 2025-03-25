@@ -70,8 +70,25 @@ while ($cat = $categories->fetchArray()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap" rel="stylesheet">
     <title>2025 Vibe Coding Game Jam - Submissions</title>
     <style>
+
+        .recursive-500 {
+          font-family: "Recursive", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 500;
+          font-style: normal;
+          font-variation-settings:
+            "slnt" 0,
+            "CASL" 0,
+            "CRSV" 0.5,
+            "MONO" 0;
+        }
+
         :root {
             --primary-color: #2d3748;
             --secondary-color: #4a5568;
@@ -175,6 +192,12 @@ while ($cat = $categories->fetchArray()) {
             grid-template-columns: 1fr;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .submissions-grid {
+               padding: 2rem;
+            }
         }
 
         .submission-card {
@@ -573,9 +596,9 @@ while ($cat = $categories->fetchArray()) {
 <body>
     <div class="container">
         <section class="competition-info">
-            <h1>2025 Vibe Coding Game Jam</h1>
-            <p>The first game jam for AI vibecoded games</p>
-            <p class="deadline">Submission Deadline: April 1, 2025</p>
+            <h1 class="recursive-500">2025 Vibe Coding Game Jam</h1>
+            <p class="recursive-500">The first game jam for AI vibecoded games</p>
+            <p class="deadline recursive-500">Submission Deadline: April 1, 2025</p>
             <p><a href="http://jam.pieter.com" class="submit-button"><span class="emoji-space">🎮</span>Submit Your Game</a></p>
             
             <div class="jury-sponsors">
