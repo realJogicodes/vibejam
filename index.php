@@ -536,5 +536,124 @@ while ($cat = $categories->fetchArray()) {
             <?php endif; ?>
         </nav>
     </div>
+
+    <footer class="jury-section">
+        <section class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Meet Our Jury</h2>
+            <div class="jury-grid">
+                <?php
+                // Reset jury_members result pointer
+                $jury_members->reset();
+                while ($jury = $jury_members->fetchArray()):
+                    $username = htmlspecialchars(ltrim($jury['username'], '@'));
+                ?>
+                    <div class="jury-card">
+                        <a href="https://x.com/<?php echo $username; ?>" target="_blank" class="jury-link">
+                            <img class="jury-image"
+                                 src="https://unavatar.io/twitter/<?php echo $username; ?>"
+                                 alt="Profile picture of <?php echo htmlspecialchars($jury['username']); ?>">
+                            <div class="jury-content">
+                                <h3 class="jury-name"><?php echo htmlspecialchars($jury['username']); ?></h3>
+                                <p class="jury-bio">
+                                    <?php
+                                    switch($jury['username']) {
+                                        case '@karpathy':
+                                            echo 'AI research pioneer and neural network expert';
+                                            break;
+                                        case '@timsoret':
+                                            echo 'Indie game developer and creative visionary';
+                                            break;
+                                        case '@mrdoob':
+                                            echo 'Creator of Three.js and web graphics innovator';
+                                            break;
+                                        case '@s13k_':
+                                            echo 'Game development enthusiast and AI coding advocate';
+                                            break;
+                                        case '@levelsio':
+                                            echo 'Indie maker and serial entrepreneur';
+                                            break;
+                                        default:
+                                            echo 'Vibe Jam jury member';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </section>
+    </footer>
+
+    <style>
+        .jury-section {
+            background: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .jury-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .jury-card {
+            background: rgb(237, 240, 243);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .jury-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .jury-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 1rem;
+        }
+
+        .jury-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .jury-content {
+            flex: 1;
+        }
+
+        .jury-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .jury-bio {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 640px) {
+            .jury-link {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .jury-image {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </body>
 </html>
