@@ -77,6 +77,7 @@ while ($cat = $categories->fetchArray()) {
             --secondary-color: #4a5568;
             --background-color: #f7fafc;
             --text-color: #1a202c;
+            --border-radius: 12px;
         }
 
         * {
@@ -106,7 +107,7 @@ while ($cat = $categories->fetchArray()) {
 
         .competition-info {
             background: white;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             margin-bottom: 2rem;
             text-align: center;
@@ -141,7 +142,7 @@ while ($cat = $categories->fetchArray()) {
             background: var(--primary-color);
             color: white;
             padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
+            border-radius: var(--border-radius);
             font-size: 0.875rem;
             margin: 0.25rem;
         }
@@ -167,7 +168,7 @@ while ($cat = $categories->fetchArray()) {
             margin-bottom: 2rem;
             padding: 1rem;
             background-color: white;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
         }
 
         .submissions-grid {
@@ -180,7 +181,7 @@ while ($cat = $categories->fetchArray()) {
 
         .submission-card {
             background: white;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -223,7 +224,7 @@ while ($cat = $categories->fetchArray()) {
         .pagination a {
             padding: 0.5rem 1rem;
             background: white;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             text-decoration: none;
             color: var(--primary-color);
         }
@@ -269,7 +270,7 @@ while ($cat = $categories->fetchArray()) {
             background: #10B981;
             color: white;
             padding: 1rem 2rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.2s;
@@ -295,7 +296,7 @@ while ($cat = $categories->fetchArray()) {
             flex: 1;
             padding: 0.5rem;
             border: 1px solid #e2e8f0;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
         }
 
         .search-box button {
@@ -303,7 +304,7 @@ while ($cat = $categories->fetchArray()) {
             background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             cursor: pointer;
         }
 
@@ -318,7 +319,7 @@ while ($cat = $categories->fetchArray()) {
             padding: 0.5rem 1rem;
             background: white;
             border: 1px solid var(--primary-color);
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             text-decoration: none;
             color: var(--primary-color);
             transition: all 0.2s;
@@ -346,7 +347,7 @@ while ($cat = $categories->fetchArray()) {
             display: flex;
             align-items: center;
             background:rgb(237, 240, 243);
-            border-radius: 50px;
+            border-radius: 50px;  /* Keep this at 50px for pill shape */
             padding: 0.5rem;
             transition: transform 0.2s ease;
             text-decoration: none;
@@ -367,6 +368,22 @@ while ($cat = $categories->fetchArray()) {
         .jury-member span {
             padding-right: 1rem;
             font-weight: 500;
+        }
+
+        .play-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .play-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 640px) {
@@ -394,7 +411,7 @@ while ($cat = $categories->fetchArray()) {
             <h1>2025 Vibe Coding Game Jam</h1>
             <p>The first game jam for AI vibecoded games</p>
             <p class="deadline">Submission Deadline: April 1, 2025</p>
-            <p><a href="http://jam.pieter.com" class="submit-button">Submit Your Game</a></p>
+            <p><a href="http://jam.pieter.com" class="submit-button">🎮 Submit Your Game</a></p>
             
             <div class="jury-sponsors">
                 <div>
@@ -447,16 +464,26 @@ while ($cat = $categories->fetchArray()) {
                 <div class="search-box">
                     <input type="text" name="search" placeholder="Search by title or creator" 
                            value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-                    <button type="submit">Search</button>
+                    <button type="submit">🔍 Search</button>
                 </div>
                 <div class="category-filters">
                     <a href="?" class="category-button <?php echo empty($_GET['category']) ? 'active' : ''; ?>">
-                        All Games
+                        🎮 All Games
                     </a>
                     <?php foreach ($category_list as $category): ?>
                         <a href="?category=<?php echo urlencode($category); ?>" 
                            class="category-button <?php echo ($_GET['category'] ?? '') === $category ? 'active' : ''; ?>">
-                            <?php echo htmlspecialchars($category); ?>
+                            <?php 
+                            $emoji = match($category) {
+                                'Death match' => '⚔️',
+                                'FPS' => '🎯',
+                                'Platformer' => '🏃',
+                                'Real Time Strategy' => '🏰',
+                                'Simulator' => '🎛️',
+                                default => '🎲'
+                            };
+                            echo $emoji . ' ' . htmlspecialchars($category); 
+                            ?>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -474,15 +501,15 @@ while ($cat = $categories->fetchArray()) {
                         <p class="submission-creator">by <?php echo htmlspecialchars($row['creator']); ?></p>
                         <p class="submission-description"><?php echo htmlspecialchars($row['description']); ?></p>
                         <div class="submission-meta">
-                            <span><?php echo $row['ai_code_percentage']; ?>% AI-coded</span>
-                            <span><?php echo $row['engine_used'] ? htmlspecialchars($row['engine_used']) : 'Custom Engine'; ?></span>
-                            <span><?php echo $row['is_multiplayer'] ? 'Multiplayer' : 'Single Player'; ?></span>
+                            <span>🤖 <?php echo $row['ai_code_percentage']; ?>% AI-coded</span>
+                            <span>🎮 <?php echo $row['engine_used'] ? htmlspecialchars($row['engine_used']) : 'Custom Engine'; ?></span>
+                            <span><?php echo $row['is_multiplayer'] ? '👥 Multiplayer' : '👤 Single Player'; ?></span>
                             <?php if ($row['username_required']): ?>
-                                <span>Username Required</span>
+                                <span>👤 Username Required</span>
                             <?php endif; ?>
                         </div>
                         <a href="<?php echo htmlspecialchars($row['game_url']); ?>" target="_blank" 
-                           class="play-button">Play Game</a>
+                           class="play-button">▶️ Play Game</a>
                     </div>
                 </article>
             <?php endwhile; ?>
@@ -490,7 +517,7 @@ while ($cat = $categories->fetchArray()) {
 
         <nav class="pagination">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>">&laquo; Previous</a>
+                <a href="?page=<?php echo $page - 1; ?>">⬅️ Previous</a>
             <?php endif; ?>
             
             <?php for ($i = max(1, $page - 2); $i <= min($total_pages, $page + 2); $i++): ?>
@@ -501,7 +528,7 @@ while ($cat = $categories->fetchArray()) {
             <?php endfor; ?>
 
             <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>">Next &raquo;</a>
+                <a href="?page=<?php echo $page + 1; ?>">Next ➡️</a>
             <?php endif; ?>
         </nav>
     </div>
