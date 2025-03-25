@@ -535,6 +535,29 @@ while ($cat = $categories->fetchArray()) {
             color: var(--secondary-color);
         }
 
+        .footer-section {
+            background: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 640px) {
             .sponsor-link {
                 flex-direction: column;
@@ -762,6 +785,11 @@ while ($cat = $categories->fetchArray()) {
         </div>
     </section>
 
+    <footer class="footer-section">
+        <div class="container">
+            <p class="footer-text">Website vibe coded by <a href="https://x.com/jogicodes" target="_blank">@jogicodes</a> using vanilla PHP, vanilla CSS, SQLite3 with help from Claude 3.7 and Grok 3 with some sprinkles of GPT</p>
+        </div>
+    </footer>
 
 </body>
 </html>
