@@ -683,7 +683,6 @@ while ($cat = $categories->fetchArray()) {
       <p class="recursive-500">Push AI to its limits and build something wild</p>
       <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="recursive-500"><span class="emoji-space">👾</span>Can
         you make the sickest AI-powered online game?</p>
-      <ul
       <ul class="benefit-list">
         <li><span class="emoji-space">🏆</span>Show off your skills – Get judged by game devs</li>
         <li><span class="emoji-space">📣</span>Go viral – Winners get a big Twitter shoutout</li>
