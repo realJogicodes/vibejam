@@ -636,8 +636,9 @@ while ($cat = $categories->fetchArray()) {
 </head>
 
 <body>
-  <div class="container">
-    <section class="competition-info">
+
+  <section class="competition-info">
+    <div class="container">
       <p style="font-size: 1.2rem; color: #e53e3e;" class="recursive-500"><span class="emoji-space">🤖</span>AI-Powered
         Game Dev Jam</p>
       <h1 class="recursive-500">2025 Vibe Coding Game Jam</h1>
@@ -704,8 +705,9 @@ while ($cat = $categories->fetchArray()) {
       </div>
 
       <p><strong>Rules:</strong> Games must be 80% AI-coded, web-accessible, and load instantly!</p>
-    </section>
-
+    </div>
+  </section>
+  <div class="container">
     <section class="filters">
       <form action="" method="GET" class="filter-form">
         <div class="category-filters">
