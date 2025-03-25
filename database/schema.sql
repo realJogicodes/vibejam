@@ -23,7 +23,7 @@ CREATE TABLE submissions (
     title TEXT NOT NULL,
     creator TEXT NOT NULL,
     description TEXT,
-    category TEXT,
+    category TEXT CHECK (category IN ('Death match', 'FPS', 'Platformer', 'Real Time Strategy', 'Simulator', 'Other')),
     screenshot_url TEXT,
     game_url TEXT NOT NULL,
     submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
