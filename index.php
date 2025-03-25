@@ -378,6 +378,7 @@ while ($cat = $categories->fetchArray()) {
             text-decoration: none;
             font-weight: bold;
             transition: all 0.2s;
+            margin-top: 1rem;
         }
 
         .play-button:hover {
