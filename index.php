@@ -77,7 +77,6 @@ while ($cat = $categories->fetchArray()) {
             --secondary-color: #4a5568;
             --background-color: #f7fafc;
             --text-color: #1a202c;
-            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -108,7 +107,6 @@ while ($cat = $categories->fetchArray()) {
         .competition-info {
             background: white;
             border-radius: 8px;
-            box-shadow: var(--card-shadow);
             padding: 2rem;
             margin-bottom: 2rem;
             text-align: center;
@@ -170,7 +168,6 @@ while ($cat = $categories->fetchArray()) {
             padding: 1rem;
             background-color: white;
             border-radius: 8px;
-            box-shadow: var(--card-shadow);
         }
 
         .submissions-grid {
@@ -184,7 +181,6 @@ while ($cat = $categories->fetchArray()) {
         .submission-card {
             background: white;
             border-radius: 8px;
-            box-shadow: var(--card-shadow);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -230,7 +226,6 @@ while ($cat = $categories->fetchArray()) {
             border-radius: 4px;
             text-decoration: none;
             color: var(--primary-color);
-            box-shadow: var(--card-shadow);
         }
 
         .pagination a.active {
@@ -350,10 +345,9 @@ while ($cat = $categories->fetchArray()) {
         .jury-member {
             display: flex;
             align-items: center;
-            background: white;
+            background: #cbd5e1;
             border-radius: 50px;
             padding: 0.5rem;
-            box-shadow: var(--card-shadow);
             transition: transform 0.2s ease;
             text-decoration: none;
             color: var(--text-color);
