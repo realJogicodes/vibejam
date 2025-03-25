@@ -535,6 +535,45 @@ while ($cat = $categories->fetchArray()) {
                 <a href="?page=<?php echo $page + 1; ?>">Next<span class="emoji-space" style="margin: 0 0 0 0.5rem">➡️</span></a>
             <?php endif; ?>
         </nav>
+
+        <section class="sponsors-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Our Sponsors</h2>
+                <div class="sponsors-grid">
+                    <?php
+                    // Reset sponsors result pointer
+                    $sponsors->reset();
+                    while ($sponsor = $sponsors->fetchArray()):
+                        $username = htmlspecialchars(ltrim($sponsor['username'], '@'));
+                    ?>
+                        <div class="sponsor-card">
+                            <a href="https://x.com/<?php echo $username; ?>" target="_blank" class="sponsor-link">
+                                <img class="sponsor-image"
+                                     src="https://unavatar.io/twitter/<?php echo $username; ?>"
+                                     alt="Profile picture of <?php echo htmlspecialchars($sponsor['username']); ?>">
+                                <div class="sponsor-content">
+                                    <h3 class="sponsor-name"><?php echo htmlspecialchars($sponsor['username']); ?></h3>
+                                    <p class="sponsor-bio">
+                                        <?php
+                                        switch($sponsor['username']) {
+                                            case '@boltdotnew':
+                                                echo 'Innovative tech solutions provider';
+                                                break;
+                                            case '@coderabbitai':
+                                                echo 'AI-powered code review platform';
+                                                break;
+                                            default:
+                                                echo 'Vibe Jam sponsor';
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer class="jury-section">
@@ -650,6 +689,75 @@ while ($cat = $categories->fetchArray()) {
             }
 
             .jury-image {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .sponsors-section {
+            background: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sponsor-card {
+            background: rgb(237, 240, 243);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sponsor-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 1rem;
+        }
+
+        .sponsor-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .sponsor-content {
+            flex: 1;
+        }
+
+        .sponsor-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .sponsor-bio {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 640px) {
+            .sponsor-link {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sponsor-image {
                 margin-right: 0;
                 margin-bottom: 1rem;
             }
