@@ -758,19 +758,19 @@ while ($cat = $categories->fetchArray()) {
                                     <?php
                                     switch($jury['username']) {
                                         case '@karpathy':
-                                            echo 'AI research pioneer and neural network expert';
+                                            echo 'AI research pioneer building @EurekaLabsAI. Ex-Director of AI @Tesla, founding member @OpenAI, and Stanford PhD.';
                                             break;
                                         case '@timsoret':
-                                            echo 'Indie game developer and creative visionary';
+                                            echo 'Founder of @OddTalesGames, directing @TLN_Game. Expert in art direction, cinematography, and tech art.';
                                             break;
                                         case '@mrdoob':
-                                            echo 'Creator of Three.js and web graphics innovator';
+                                            echo 'Creator of @ThreeJS, web graphics innovator, and self-proclaimed "award-losing non-creative junior developer."';
                                             break;
                                         case '@s13k_':
-                                            echo 'Game development enthusiast and AI coding advocate';
+                                            echo 'Vibe code consultant and web development enthusiast at s13k.dev.';
                                             break;
                                         case '@levelsio':
-                                            echo 'Indie maker and serial entrepreneur';
+                                            echo 'Indie maker and serial entrepreneur behind @PhotoAI, @InteriorAI, @Nomads, @RemoteOK, and more.';
                                             break;
                                         default:
                                             echo 'Vibe Jam jury member';
