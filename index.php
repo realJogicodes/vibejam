@@ -699,8 +699,8 @@ while ($cat = $categories->fetchArray()) {
 
         <section class="sponsors-section">
             <div class="container">
-                <h2 style="text-align: center; margin-bottom: 2rem;">Our Sponsors</h2>
-                <div class="sponsors-grid">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Vibe Jam Sponsors</h2>
+
                     <?php
                     // Reset sponsors result pointer
                     $sponsors->reset();
@@ -718,10 +718,10 @@ while ($cat = $categories->fetchArray()) {
                                         <?php
                                         switch($sponsor['username']) {
                                             case '@boltdotnew':
-                                                echo 'Innovative tech solutions provider';
+                                                echo 'Platform for prompting, running, editing, and deploying full-stack web and mobile apps @boltnew since 2014.';
                                                 break;
                                             case '@coderabbitai':
-                                                echo 'AI-powered code review platform';
+                                                echo 'San Francisco-based AI code review platform @coderabbitai, supercharging dev teams since 2023.';
                                                 break;
                                             default:
                                                 echo 'Vibe Jam sponsor';
@@ -739,7 +739,7 @@ while ($cat = $categories->fetchArray()) {
 
     <section class="jury-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Meet Our Jury</h2>
+            <h2 style="text-align: center; margin-bottom: 2rem;">The Jury</h2>
             <div class="jury-grid">
                 <?php
                 // Reset jury_members result pointer
