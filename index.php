@@ -128,6 +128,16 @@ while ($cat = $categories->fetchArray()) {
             text-align: center;
         }
 
+        @media (max-width: 640px) {
+            section.competition-info {
+                padding: 1rem !important;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
         .competition-info h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -622,8 +632,8 @@ while ($cat = $categories->fetchArray()) {
             <p style="font-size: 1.2rem; color: #e53e3e;" class="recursive-500"><span class="emoji-space">🤖</span>AI-Powered Game Dev Jam</p>
             <h1 class="recursive-500">2025 Vibe Coding Game Jam</h1>
             <p class="recursive-500">Push AI to its limits and build something wild</p>
-                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="recursive-500"><span class="emoji-space">👾</span>Can you make the sickest AI-powered online game?</p>
-            <ul style="list-style: none; margin: 1.5rem 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="recursive-500"><span class="emoji-space">👾</span>Can you make the sickest AI-powered online game?</p>
+            <ul style="list-style: none; margin: 1.5rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
               <li><span class="emoji-space">🏆</span>Show off your skills – Get judged by game devs</li>
               <li><span class="emoji-space">📣</span>Go viral – Winners get a big Twitter shoutout</li>
               <li><span class="emoji-space">⏰</span>Make a game by April 1st, 2025</li>
