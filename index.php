@@ -576,8 +576,8 @@ while ($cat = $categories->fetchArray()) {
         </section>
     </div>
 
-    <footer class="jury-section">
-        <section class="container">
+    <section class="jury-section">
+        <div class="container">
             <h2 style="text-align: center; margin-bottom: 2rem;">Meet Our Jury</h2>
             <div class="jury-grid">
                 <?php
@@ -621,8 +621,8 @@ while ($cat = $categories->fetchArray()) {
                     </div>
                 <?php endwhile; ?>
             </div>
-        </section>
-    </footer>
+        </div>
+    </section>
 
     <style>
         .jury-section {
