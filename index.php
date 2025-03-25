@@ -75,7 +75,7 @@ while ($cat = $categories->fetchArray()) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap" rel="stylesheet">
-  <title>2025 Vibe Coding Game Jam - Submissions</title>
+  <title>2025 Vibe Coding Game Jam</title>
   <style>
     .recursive-700 {
       font-family: "Recursive", sans-serif;
