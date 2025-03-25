@@ -91,7 +91,6 @@ while ($cat = $categories->fetchArray()) {
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
-            padding: 20px;
         }
 
         .container {
