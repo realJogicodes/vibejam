@@ -507,12 +507,32 @@ while ($cat = $categories->fetchArray()) {
             border-top: 1px solid #e2e8f0;
         }
 
+        .sponsors-container {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr; /* Single column for mobile */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .sponsors-container {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+            }
+        }
+
         .sponsors-grid {
             display: grid;
             gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr; /* Default single column for mobile */
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+            }
         }
 
         .sponsor-card {
@@ -649,11 +669,6 @@ while ($cat = $categories->fetchArray()) {
 
         <section class="filters">
             <form action="" method="GET" class="filter-form">
-                <div class="search-box">
-                    <input type="text" name="search" placeholder="Search by title or creator" 
-                           value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-                    <button type="submit"><span class="emoji-space">🔍</span>Search</button>
-                </div>
                 <div class="category-filters">
                     <a href="?" class="category-button <?php echo empty($_GET['category']) ? 'active' : ''; ?>">
                         <span class="emoji-space">🎮</span>All Games
@@ -674,6 +689,11 @@ while ($cat = $categories->fetchArray()) {
                             ?>
                         </a>
                     <?php endforeach; ?>
+                </div>
+                <div class="search-box">
+                    <input type="text" name="search" placeholder="Search by title or creator"
+                           value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                    <button type="submit"><span class="emoji-space">🔍</span>Search</button>
                 </div>
             </form>
         </section>
@@ -722,7 +742,7 @@ while ($cat = $categories->fetchArray()) {
         <section class="sponsors-section">
             <div class="container">
                 <h2 style="text-align: center; margin-bottom: 2rem;">Vibe Jam Sponsors</h2>
-
+                <div class="sponsors-container">
                     <?php
                     // Reset sponsors result pointer
                     $sponsors->reset();
