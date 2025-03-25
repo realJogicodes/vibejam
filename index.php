@@ -406,7 +406,7 @@ while ($cat = $categories->fetchArray()) {
                     <h2>Jury Members</h2>
                     <div class="jury-members">
                     <?php while ($jury = $jury_members->fetchArray()): ?>
-                        <a href="https://twitter.com/<?php echo htmlspecialchars($jury['username']); ?>" target="_blank" class="jury-member">
+                        <a href="https://x.com/<?php echo htmlspecialchars($jury['username']); ?>" target="_blank" class="jury-member">
                             <img src="https://unavatar.io/twitter/<?php echo htmlspecialchars($jury['username']); ?>" alt="Profile picture of <?php echo htmlspecialchars($jury['username']); ?>">
                             <span><?php echo htmlspecialchars($jury['username']); ?></span>
                         </a>
