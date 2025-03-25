@@ -410,7 +410,7 @@ while ($cat = $categories->fetchArray()) {
 
         .jury-section {
             background: white;
-            padding: 2rem 0;
+            padding: 2rem;
             margin-top: 4rem;
             border-top: 1px solid #e2e8f0;
         }
@@ -479,7 +479,7 @@ while ($cat = $categories->fetchArray()) {
 
         .sponsors-section {
             background: white;
-            padding: 2rem 0;
+            padding: 2rem;
             margin-top: 4rem;
             border-top: 1px solid #e2e8f0;
         }
