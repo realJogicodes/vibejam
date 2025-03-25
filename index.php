@@ -338,6 +338,42 @@ while ($cat = $categories->fetchArray()) {
             color: white;
         }
 
+        .jury-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .jury-member {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .jury-member:hover {
+            transform: scale(1.05);
+        }
+
+        .jury-member img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+
+        .jury-member span {
+            padding-right: 1rem;
+            font-weight: 500;
+        }
+
         @media (max-width: 640px) {
             .filter-form {
                 gap: 1rem;
@@ -368,9 +404,14 @@ while ($cat = $categories->fetchArray()) {
             <div class="jury-sponsors">
                 <div>
                     <h2>Jury Members</h2>
+                    <div class="jury-members">
                     <?php while ($jury = $jury_members->fetchArray()): ?>
-                        <span class="tag"><?php echo htmlspecialchars($jury['username']); ?></span>
+                        <a href="https://twitter.com/<?php echo htmlspecialchars($jury['username']); ?>" target="_blank" class="jury-member">
+                            <img src="https://unavatar.io/twitter/<?php echo htmlspecialchars($jury['username']); ?>" alt="Profile picture of <?php echo htmlspecialchars($jury['username']); ?>">
+                            <span><?php echo htmlspecialchars($jury['username']); ?></span>
+                        </a>
                     <?php endwhile; ?>
+                    </div>
                 </div>
                 <div>
                     <h2>Sponsors</h2>
