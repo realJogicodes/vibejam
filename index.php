@@ -85,6 +85,7 @@ while ($cat = $categories->fetchArray()) {
             padding: 0;
             box-sizing: border-box;
         }
+        
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
