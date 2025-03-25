@@ -86,7 +86,6 @@ while ($cat = $categories->fetchArray()) {
             box-sizing: border-box;
         }
         
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -346,8 +345,8 @@ while ($cat = $categories->fetchArray()) {
         .jury-member {
             display: flex;
             align-items: center;
-            background:rgb(237, 240, 243);
-            border-radius: 50px;  /* Keep this at 50px for pill shape */
+            background: rgb(237, 240, 243);
+            border-radius: 50px;
             padding: 0.5rem;
             transition: transform 0.2s ease;
             text-decoration: none;
@@ -403,6 +402,11 @@ while ($cat = $categories->fetchArray()) {
                 justify-content: center;
             }
         }
+
+        .emoji-space {
+            margin-right: 0.5rem;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -411,7 +415,7 @@ while ($cat = $categories->fetchArray()) {
             <h1>2025 Vibe Coding Game Jam</h1>
             <p>The first game jam for AI vibecoded games</p>
             <p class="deadline">Submission Deadline: April 1, 2025</p>
-            <p><a href="http://jam.pieter.com" class="submit-button">🎮 Submit Your Game</a></p>
+            <p><a href="http://jam.pieter.com" class="submit-button"><span class="emoji-space">🎮</span>Submit Your Game</a></p>
             
             <div class="jury-sponsors">
                 <div>
@@ -464,11 +468,11 @@ while ($cat = $categories->fetchArray()) {
                 <div class="search-box">
                     <input type="text" name="search" placeholder="Search by title or creator" 
                            value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-                    <button type="submit">🔍 Search</button>
+                    <button type="submit"><span class="emoji-space">🔍</span>Search</button>
                 </div>
                 <div class="category-filters">
                     <a href="?" class="category-button <?php echo empty($_GET['category']) ? 'active' : ''; ?>">
-                        🎮 All Games
+                        <span class="emoji-space">🎮</span>All Games
                     </a>
                     <?php foreach ($category_list as $category): ?>
                         <a href="?category=<?php echo urlencode($category); ?>" 
@@ -482,7 +486,7 @@ while ($cat = $categories->fetchArray()) {
                                 'Simulator' => '🎛️',
                                 default => '🎲'
                             };
-                            echo $emoji . ' ' . htmlspecialchars($category); 
+                            echo '<span class="emoji-space">' . $emoji . '</span>' . htmlspecialchars($category);
                             ?>
                         </a>
                     <?php endforeach; ?>
@@ -501,15 +505,14 @@ while ($cat = $categories->fetchArray()) {
                         <p class="submission-creator">by <?php echo htmlspecialchars($row['creator']); ?></p>
                         <p class="submission-description"><?php echo htmlspecialchars($row['description']); ?></p>
                         <div class="submission-meta">
-                            <span>🤖 <?php echo $row['ai_code_percentage']; ?>% AI-coded</span>
-                            <span>🎮 <?php echo $row['engine_used'] ? htmlspecialchars($row['engine_used']) : 'Custom Engine'; ?></span>
-                            <span><?php echo $row['is_multiplayer'] ? '👥 Multiplayer' : '👤 Single Player'; ?></span>
+                            <span><span class="emoji-space">🎮</span><?php echo $row['engine_used'] ? htmlspecialchars($row['engine_used']) : 'Custom Engine'; ?></span>
+                            <span><?php echo $row['is_multiplayer'] ? '<span class="emoji-space">👥</span>Multiplayer' : '<span class="emoji-space">👤</span>Single Player'; ?></span>
                             <?php if ($row['username_required']): ?>
-                                <span>👤 Username Required</span>
+                                <span><span class="emoji-space">👤</span>Username Required</span>
                             <?php endif; ?>
                         </div>
                         <a href="<?php echo htmlspecialchars($row['game_url']); ?>" target="_blank" 
-                           class="play-button">▶️ Play Game</a>
+                           class="play-button"><span class="emoji-space">▶️</span>Play Game</a>
                     </div>
                 </article>
             <?php endwhile; ?>
@@ -517,7 +520,7 @@ while ($cat = $categories->fetchArray()) {
 
         <nav class="pagination">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>">⬅️ Previous</a>
+                <a href="?page=<?php echo $page - 1; ?>"><span class="emoji-space">⬅️</span>Previous</a>
             <?php endif; ?>
             
             <?php for ($i = max(1, $page - 2); $i <= min($total_pages, $page + 2); $i++): ?>
@@ -528,7 +531,7 @@ while ($cat = $categories->fetchArray()) {
             <?php endfor; ?>
 
             <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>">Next ➡️</a>
+                <a href="?page=<?php echo $page + 1; ?>">Next<span class="emoji-space" style="margin: 0 0 0 0.5rem">➡️</span></a>
             <?php endif; ?>
         </nav>
     </div>
