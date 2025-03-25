@@ -619,10 +619,19 @@ while ($cat = $categories->fetchArray()) {
 <body>
     <div class="container">
         <section class="competition-info">
+            <p style="font-size: 1.2rem; color: #e53e3e;" class="recursive-500"><span class="emoji-space">🤖</span>AI-Powered Game Dev Jam</p>
             <h1 class="recursive-500">2025 Vibe Coding Game Jam</h1>
-            <p class="recursive-500">The first game jam for AI vibecoded games</p>
-            <p class="deadline recursive-500">Submission Deadline: April 1, 2025</p>
-            <p><a href="http://jam.pieter.com" class="submit-button"><span class="emoji-space">🎮</span>Submit Your Game</a></p>
+            <p class="recursive-500">Push AI to its limits and build something wild</p>
+                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;" class="recursive-500"><span class="emoji-space">👾</span>Can you make the sickest AI-powered online game?</p>
+            <ul style="list-style: none; margin: 1.5rem 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
+              <li><span class="emoji-space">🏆</span>Show off your skills – Get judged by game devs</li>
+              <li><span class="emoji-space">📣</span>Go viral – Winners get a big Twitter shoutout</li>
+              <li><span class="emoji-space">⏰</span>Make a game by April 1st, 2025</li>
+                <li><span class="emoji-space">🧠</span>Write it with AI-generated code </li>
+                <li><span class="emoji-space">🌐</span>No logins, no downloads</li>
+            </ul>
+
+            <p><a href="http://jam.pieter.com" class="submit-button" style="background: #e53e3e;"><span class="emoji-space">🔥</span>Submit Your Game Now!</a></p>
             
             <div class="jury-sponsors">
                 <div>
